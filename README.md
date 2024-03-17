@@ -1,11 +1,8 @@
-# Nu primesc notă pentru că nu am pus titlu și descriere
+# 2048
 
-### Important!
-Aveți voie cu cod generat de modele de limbaj la care nu ați contribuit semnificativ doar în folder-ul `generated`.
-Codul generat pus "ca să fie"/pe care nu îl înțelegeți se punctează doar pentru puncte bonus, doar în contextul
-în care oferă funcționalități ajutătoare și doar dacă are sens.
+## Descriere proiect
 
-O cerință nu se consideră îndeplinită dacă este realizată doar ca o serie de apeluri proxy către cod generat.
+
 
 ### Cerințe modele de limbaj la nivel de semestru
 - [ ] minim o funcționalitate majoritar doar cu LLM
@@ -14,31 +11,31 @@ O cerință nu se consideră îndeplinită dacă este realizată doar ca o serie
 
 ### Tema 0
 
-- [ ] Nume proiect (poate fi schimbat ulterior)
+- [x] Nume proiect (poate fi schimbat ulterior)
 - [ ] Scurtă descriere a temei alese, ce v-ați propus să implementați
 
 ## Tema 1
 
 #### Cerințe
-- [ ] definirea a minim **3-4 clase** folosind compunere cu clasele definite de voi
-- [ ] constructori de inițializare
-- [ ] pentru o aceeași (singură) clasă: constructor de copiere, `operator=` de copiere, destructor
+- [x] definirea a minim **3-4 clase** folosind compunere cu clasele definite de voi
+- [x] constructori de inițializare
+- [x] pentru o aceeași (singură) clasă: constructor de copiere, `operator=` de copiere, destructor
 <!-- - [ ] pentru o altă clasă: constructor de mutare, `operator=` de mutare, destructor -->
 <!-- - [ ] pentru o altă clasă: toate cele 5 funcții membru speciale -->
 - [ ] `operator<<` pentru toate clasele pentru afișare (std::ostream)
 - [ ] cât mai multe `const` (unde este cazul)
-- [ ] implementarea a minim 3 funcții membru publice pentru funcționalități specifice temei alese, dintre care cel puțin 1-2 funcții mai complexe
+- [x] implementarea a minim 3 funcții membru publice pentru funcționalități specifice temei alese, dintre care cel puțin 1-2 funcții mai complexe
   - nu doar citiri/afișări sau adăugat/șters elemente într-un/dintr-un vector
-- [ ] scenariu de utilizare a claselor definite:
+- [x] scenariu de utilizare a claselor definite:
   - crearea de obiecte și apelarea tuturor funcțiilor membru publice în main
   - vor fi adăugate în fișierul `tastatura.txt` DOAR exemple de date de intrare de la tastatură (dacă există); dacă aveți nevoie de date din fișiere, creați alte fișiere separat
-- [ ] tag de `git`: de exemplu `v0.1`
-- [ ] serviciu de integrare continuă (CI); exemplu: GitHub Actions
+- [x] tag de `git`: de exemplu `v0.1`
+- [x] serviciu de integrare continuă (CI); exemplu: GitHub Actions
 
 ## Tema 2
 
 #### Cerințe
-- [ ] separarea codului din clase în `.h` (sau `.hpp`) și `.cpp`
+- [x] separarea codului din clase în `.h` (sau `.hpp`) și `.cpp`
 - [ ] moșteniri:
   - minim o clasă de bază și **3 clase derivate**
   - ierarhia trebuie să fie cu bază proprie, nu derivată dintr-o clasă predefinită
@@ -47,14 +44,14 @@ O cerință nu se consideră îndeplinită dacă este realizată doar ca o serie
     - minim o funcție virtuală va fi **specifică temei** (e.g. nu simple citiri/afișări)
     - constructori virtuali (clone): sunt necesari, dar nu se consideră funcții specifice temei
   - [ ] apelarea constructorului din clasa de bază din constructori din derivate
-  - [ ] smart pointers (recomandat, opțional)
+  - [x] smart pointers (recomandat, opțional)
   - [ ] `dynamic_cast`/`std::dynamic_pointer_cast` pentru downcast cu sens
 - [ ] suprascris cc/op= pentru copieri/atribuiri corecte, copy and swap
 - [ ] excepții
   - [ ] ierarhie proprie cu baza `std::exception` sau derivată din `std::exception`; minim **3** clase pentru erori specifice
   - [ ] utilizare cu sens: de exemplu, `throw` în constructor (sau funcție care întoarce un obiect), `try`/`catch` în `main`
 - [ ] funcții și atribute `static`
-- [ ] STL
+- [x] STL
 - [ ] cât mai multe `const`
 - [ ] la sfârșit: commit separat cu adăugarea unei noi clase derivate fără a modifica restul codului, **pe lângă cele 3 derivate deja adăugate**
   - noua derivată nu poate fi una existentă care a fost ștearsă și adăugată din nou
@@ -72,4 +69,3 @@ O cerință nu se consideră îndeplinită dacă este realizată doar ca o serie
 ## Resurse
 
 - [SFML](https://github.com/SFML/SFML/tree/2.6.1) (Zlib)
-- adăugați trimiteri către resursele externe care v-au ajutat sau pe care le-ați folosit
