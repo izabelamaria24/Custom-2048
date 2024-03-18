@@ -12,8 +12,6 @@ private:
     void flipHorizontally();
     void flipDiagonally();
 
-//   static int get2Power(int val);
-    static int create2Power(uint8_t power);
     [[nodiscard]] bool checkEmptyTiles() const;
     [[nodiscard]] bool checkEmptySingleTile(int x, int y) const;
     void handleInput(sf::RenderWindow& gameWindow) override;
@@ -26,6 +24,10 @@ public:
 
     static int generateRandomTileValue();
     std::pair<int, int> generateRandomCoordinates();
+
+    //   static int get2Power(int val);
+    static int create2Power(uint8_t power);
+
 
     [[nodiscard]] unsigned long long extractTileValue(int line, int column) const;
     void updateTileValue(int line, int column, unsigned long long updateValue);

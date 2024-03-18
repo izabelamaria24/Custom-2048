@@ -17,6 +17,7 @@ void Gameplay::renderWindow(sf::RenderWindow &gameWindow) {
     gameWindow.create(sf::VideoMode({800, 800}), "2048", sf::Style::Default);
     gameWindow.setVerticalSyncEnabled(true);
 
+    play();
     drawGame(gameWindow);
     gameWindow.display();
 //
