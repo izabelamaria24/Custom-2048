@@ -1,6 +1,11 @@
+#pragma once
+
 #include "Tile.h"
+
 #include <vector>
 #include <cstdint>
+
+class Gameplay;
 
 class GameMap{
 private:
@@ -8,5 +13,5 @@ private:
 
 public:
     GameMap();
-    void drawMap(sf::RenderWindow& window, float tile_size);
+    void drawMap(sf::RenderWindow& window, float tile_size, Gameplay& gameplay);
 };

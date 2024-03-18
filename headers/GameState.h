@@ -3,6 +3,7 @@
 #include <chrono>
 #include <thread>
 #include <memory>
+
 #include "GameMap.h"
 class Gameplay;
 
@@ -15,5 +16,5 @@ public:
     virtual void renderWindow(sf::RenderWindow& gameWindow) = 0;
     virtual ~GameState() = default;
 
-    virtual std::unique_ptr<GameMap>& drawGame(sf::RenderWindow& gameWindow) = 0;
+    virtual void drawGame(sf::RenderWindow& gameWindow) = 0;
 };

@@ -121,6 +121,7 @@ add_executable(${PROJECT_NAME}
         headers/Game.h
         Game.cpp
         Gameplay.cpp
+        fonts/Roboto-Medium.ttf
 )
 
 ###############################################################################
