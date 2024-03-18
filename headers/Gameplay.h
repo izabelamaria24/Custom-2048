@@ -9,6 +9,9 @@ private:
     std::unique_ptr<GameMap> m_map = std::make_unique<GameMap>();
     unsigned long long m_game_data = 0;
 
+
+//   static int get2Power(int val);
+    static int create2Power(uint8_t power);
     [[nodiscard]] bool checkEmptyTiles() const;
     [[nodiscard]] bool checkEmptySingleTile(int x, int y) const;
     void handleInput(sf::RenderWindow& gameWindow) override;
@@ -23,6 +26,7 @@ public:
 
     [[nodiscard]] unsigned long long extractTileValue(int line, int column) const;
     void updateTileValue(int line, int column, unsigned long long updateValue);
+    void swapTiles(int x1, int y1, int x2, int y2);
 
     ~Gameplay() override = default;
 };

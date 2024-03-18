@@ -125,3 +125,33 @@ void Gameplay::updateTileValue(int line, int column, unsigned long long updateVa
 
     this->m_game_data = clearedData | shiftedUpdateValue;
 }
+
+// method for swapping 2 tiles
+void Gameplay::swapTiles(int x1, int y1, int x2, int y2) {
+    int bitPos1 = (x1 * 4 + y1) * 4;
+    int bitPos2 = (x2 * 4 + y2) * 4;
+
+    unsigned long long mask1 = 0xFULL << bitPos1;
+    unsigned long long mask2 = 0xFULL << bitPos2;
+
+    unsigned long long value1 = (this->m_game_data & mask1) >> bitPos1;
+    unsigned long long value2 = (this->m_game_data & mask2) >> bitPos2;
+
+    unsigned long long clearedData = this->m_game_data & ~(mask1 | mask2);
+
+    unsigned long long shiftedValue1 = value1 << bitPos2;
+    unsigned long long shiftedValue2 = value2 << bitPos1;
+
+    this->m_game_data = clearedData | shiftedValue1 | shiftedValue2;
+}
+
+// methods for creating a 2's power or getting a 2's power
+
+//int Gameplay::get2Power(int val) {
+//    int power = __builtin_ctz(val);
+//    return power;
+//}
+
+int Gameplay::create2Power(uint8_t power) {
+    return 1 << power;
+}
