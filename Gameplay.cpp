@@ -3,6 +3,14 @@
 #include <cmath>
 #include <random>
 
+// method to put everything together, represents one more step into the game logic
+void Gameplay::play() {
+    int generatedValue = generateRandomTileValue();
+    std::pair<int, int>coord = generateRandomCoordinates();
+
+    updateTileValue(coord.first, coord.second, generatedValue);
+}
+
 // game rendering method for gameplay
 void Gameplay::renderWindow(sf::RenderWindow &gameWindow) {
     // creating game window
@@ -143,6 +151,25 @@ void Gameplay::swapTiles(int x1, int y1, int x2, int y2) {
     unsigned long long shiftedValue2 = value2 << bitPos1;
 
     this->m_game_data = clearedData | shiftedValue1 | shiftedValue2;
+}
+
+// method called when keypress detected
+void Gameplay::moveTiles() {
+    for (int line = 0; line < 4; line++) {
+        for (int to = 3; to >= 0; to--) {
+            int from = to - 1;
+            while (from >= 0 && extractTileValue(line, from) == 0) from--;
+            if (from < 0) break;
+            if (extractTileValue(line, to) == extractTileValue(line, from)){
+                updateTileValue(line, to, extractTileValue(line, to) + 1);
+                updateTileValue(line, from, 0);
+            }
+            if (extractTileValue(line, to) == 0) {
+                swapTiles(line, to, line, from);
+                ++to;
+            }
+        }
+    }
 }
 
 // methods for creating a 2's power or getting a 2's power
