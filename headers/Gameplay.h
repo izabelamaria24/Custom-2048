@@ -9,6 +9,9 @@ private:
     std::unique_ptr<GameMap> m_map = std::make_unique<GameMap>();
     unsigned long long m_game_data = 0;
 
+    void flipHorizontally();
+    void flipDiagonally();
+
 //   static int get2Power(int val);
     static int create2Power(uint8_t power);
     [[nodiscard]] bool checkEmptyTiles() const;

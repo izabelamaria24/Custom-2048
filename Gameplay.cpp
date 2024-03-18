@@ -46,6 +46,40 @@ void Gameplay::handleInput(sf::RenderWindow& gameWindow) {
             case sf::Event::KeyPressed:
                 if(e.key.code == sf::Keyboard::Escape)
                     exit = true;
+
+                if(e.key.code == sf::Keyboard::Right) {
+                    moveTiles();
+                    play();
+                    drawGame(gameWindow);
+                    gameWindow.display();
+                }
+                if (e.key.code == sf::Keyboard::Left) {
+                    flipHorizontally();
+                    moveTiles();
+                    flipHorizontally();
+                    play();
+                    drawGame(gameWindow);
+                    gameWindow.display();
+                }
+                if (e.key.code == sf::Keyboard::Down) {
+                    flipDiagonally();
+                    moveTiles();
+                    flipDiagonally();
+                    play();
+                    drawGame(gameWindow);
+                    gameWindow.display();
+                }
+                if (e.key.code == sf::Keyboard::Up) {
+                    flipDiagonally();
+                    flipHorizontally();
+                    moveTiles();
+                    flipHorizontally();
+                    flipDiagonally();
+                    play();
+                    drawGame(gameWindow);
+                    gameWindow.display();
+
+                }
                 break;
             default:
                 break;
@@ -181,4 +215,18 @@ void Gameplay::moveTiles() {
 
 int Gameplay::create2Power(uint8_t power) {
     return 1 << power;
+}
+
+// private flip grid methods
+void Gameplay::flipHorizontally() {
+    for (int x = 0; x < 4; x++) {
+        swapTiles(x, 0, x, 3);
+        swapTiles(x, 1, x, 2);
+    }
+}
+
+void Gameplay::flipDiagonally(){
+    for (int i = 0; i < 3; i++)
+        for (int j = i + 1; j < 4; j++)
+            swapTiles(i, j, j, i);
 }
