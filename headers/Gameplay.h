@@ -28,11 +28,13 @@ public:
     //   static int get2Power(int val);
     static int create2Power(uint8_t power);
 
-
     [[nodiscard]] unsigned long long extractTileValue(int line, int column) const;
     void updateTileValue(int line, int column, unsigned long long updateValue);
     void swapTiles(int x1, int y1, int x2, int y2);
-    void moveTiles();
+    bool moveTiles();
+    void continueGame(sf::RenderWindow& gameWindow);
+
+    [[nodiscard]] bool gameOver() const;
 
     ~Gameplay() override = default;
 };

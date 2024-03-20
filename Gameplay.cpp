@@ -17,19 +17,32 @@ void Gameplay::renderWindow(sf::RenderWindow &gameWindow) {
     gameWindow.create(sf::VideoMode({800, 800}), "2048", sf::Style::Default);
     gameWindow.setVerticalSyncEnabled(true);
 
-    play();
-    drawGame(gameWindow);
-    gameWindow.display();
-//
-//    using namespace std::chrono_literals;
-//    std::this_thread::sleep_for(300ms);
-//
-//    gameWindow.clear();
-//    gameWindow.display();
+    continueGame(gameWindow);
 
     // Main game loop
     while (gameWindow.isOpen()) {
-        handleInput(gameWindow);
+        if (!gameOver()) {
+            handleInput(gameWindow);
+        } else {
+            sf::Font font;
+            if (!font.loadFromFile(R"(D:\coding\C++ Projects\oop-template\fonts\Roboto-Black.ttf)"))
+            {
+                // TODO throw error
+            }
+            sf::Text text;
+            text.setFont(font);
+            text.setString("Game over!");
+            text.setCharacterSize(50);
+            text.setFillColor(sf::Color::White);
+            sf::FloatRect textBounds = text.getLocalBounds();
+            text.setOrigin(textBounds.left + textBounds.width / 2.0f,
+                           textBounds.top + textBounds.height / 2.0f);
+            text.setPosition(gameWindow.getSize().x / 2.0f, gameWindow.getSize().y / 2.0f);
+            gameWindow.clear();
+            gameWindow.draw(text);
+            gameWindow.display();
+            handleInput(gameWindow);
+        }
     }
 
 }
@@ -49,37 +62,32 @@ void Gameplay::handleInput(sf::RenderWindow& gameWindow) {
                     exit = true;
 
                 if(e.key.code == sf::Keyboard::Right) {
-                    moveTiles();
-                    play();
-                    drawGame(gameWindow);
-                    gameWindow.display();
+                    bool available = moveTiles();
+
+                    if (available) continueGame(gameWindow);
                 }
                 if (e.key.code == sf::Keyboard::Left) {
                     flipHorizontally();
-                    moveTiles();
+                    bool available = moveTiles();
                     flipHorizontally();
-                    play();
-                    drawGame(gameWindow);
-                    gameWindow.display();
+
+                    if (available) continueGame(gameWindow);
                 }
                 if (e.key.code == sf::Keyboard::Down) {
                     flipDiagonally();
-                    moveTiles();
+                    bool available = moveTiles();
                     flipDiagonally();
-                    play();
-                    drawGame(gameWindow);
-                    gameWindow.display();
+
+                    if (available) continueGame(gameWindow);
                 }
                 if (e.key.code == sf::Keyboard::Up) {
                     flipDiagonally();
                     flipHorizontally();
-                    moveTiles();
+                    bool available = moveTiles();
                     flipHorizontally();
                     flipDiagonally();
-                    play();
-                    drawGame(gameWindow);
-                    gameWindow.display();
 
+                    if (available) continueGame(gameWindow);
                 }
                 break;
             default:
@@ -93,8 +101,14 @@ void Gameplay::handleInput(sf::RenderWindow& gameWindow) {
     }
 }
 
+void Gameplay::continueGame(sf::RenderWindow& gameWindow) {
+    play();
+    drawGame(gameWindow);
+    gameWindow.display();
+}
+
 void Gameplay::drawGame(sf::RenderWindow& gameWindow) {
-    this->m_map->drawMap(gameWindow, std::sqrt(static_cast<float>((gameWindow.getSize().x - 20) * gameWindow.getSize().y) / 16), *this);
+    this->m_map->drawMap(gameWindow, std::sqrt(static_cast<float>(gameWindow.getSize().x * gameWindow.getSize().y) / 16), *this);
 }
 
 
@@ -189,22 +203,27 @@ void Gameplay::swapTiles(int x1, int y1, int x2, int y2) {
 }
 
 // method called when keypress detected
-void Gameplay::moveTiles() {
+bool Gameplay::moveTiles() {
+    bool ok = false;
     for (int line = 0; line < 4; line++) {
         for (int to = 3; to >= 0; to--) {
             int from = to - 1;
             while (from >= 0 && extractTileValue(line, from) == 0) from--;
             if (from < 0) break;
             if (extractTileValue(line, to) == extractTileValue(line, from)){
+                ok = true;
                 updateTileValue(line, to, extractTileValue(line, to) + 1);
                 updateTileValue(line, from, 0);
             }
             if (extractTileValue(line, to) == 0) {
+                ok = true;
                 swapTiles(line, to, line, from);
                 ++to;
             }
         }
     }
+    if (ok) return true;
+    return false;
 }
 
 // methods for creating a 2's power or getting a 2's power
@@ -230,4 +249,33 @@ void Gameplay::flipDiagonally(){
     for (int i = 0; i < 3; i++)
         for (int j = i + 1; j < 4; j++)
             swapTiles(i, j, j, i);
+}
+
+bool Gameplay::gameOver() const {
+    if (checkEmptyTiles())
+        return false;
+
+    // Check horizontally
+    for (int line = 0; line < 4; line++) {
+        for (int col = 0; col < 3; col++) {
+            unsigned long long value1 = extractTileValue(line, col);
+            unsigned long long value2 = extractTileValue(line, col + 1);
+
+            if (value1 == value2)
+                return false;
+        }
+    }
+
+    // Check vertically
+    for (int col = 0; col < 4; col++) {
+        for (int line = 0; line < 3; line++) {
+            unsigned long long value1 = extractTileValue(line, col);
+            unsigned long long value2 = extractTileValue(line + 1, col);
+
+            if (value1 == value2)
+                return false;
+        }
+    }
+
+    return true;
 }
