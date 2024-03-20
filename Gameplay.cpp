@@ -37,7 +37,7 @@ void Gameplay::renderWindow(sf::RenderWindow &gameWindow) {
             sf::FloatRect textBounds = text.getLocalBounds();
             text.setOrigin(textBounds.left + textBounds.width / 2.0f,
                            textBounds.top + textBounds.height / 2.0f);
-            text.setPosition(gameWindow.getSize().x / 2.0f, gameWindow.getSize().y / 2.0f);
+            text.setPosition(static_cast<float>(gameWindow.getSize().x) / 2.0f, static_cast<float>(gameWindow.getSize().y) / 2.0f);
             gameWindow.clear();
             gameWindow.draw(text);
             gameWindow.display();
