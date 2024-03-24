@@ -3,6 +3,16 @@
 ## Descriere proiect
 
 
+### Proiectul consta intr-un joc de 2048 care va avea mai multe optiuni de joc:
+* Player 
+  - Easy
+  - Intermediate
+  - Hard
+* Bot
+  - Beginner
+  - Normal
+  - Advanced
+
 
 ### Cerințe modele de limbaj la nivel de semestru
 - [ ] minim o funcționalitate majoritar doar cu LLM
@@ -12,7 +22,7 @@
 ### Tema 0
 
 - [x] Nume proiect (poate fi schimbat ulterior)
-- [ ] Scurtă descriere a temei alese, ce v-ați propus să implementați
+- [x] Scurtă descriere a temei alese, ce v-ați propus să implementați
 
 ## Tema 1
 
@@ -20,10 +30,10 @@
 - [x] definirea a minim **3-4 clase** folosind compunere cu clasele definite de voi
 - [x] constructori de inițializare
 - [x] pentru o aceeași (singură) clasă: constructor de copiere, `operator=` de copiere, destructor
-<!-- - [ ] pentru o altă clasă: constructor de mutare, `operator=` de mutare, destructor -->
-<!-- - [ ] pentru o altă clasă: toate cele 5 funcții membru speciale -->
-- [ ] `operator<<` pentru toate clasele pentru afișare (std::ostream)
-- [ ] cât mai multe `const` (unde este cazul)
+<!-- - [x] pentru o altă clasă: constructor de mutare, `operator=` de mutare, destructor -->
+<!-- - [x] pentru o altă clasă: toate cele 5 funcții membru speciale -->
+- [x] `operator<<` pentru toate clasele pentru afișare (std::ostream)
+- [x] cât mai multe `const` (unde este cazul)
 - [x] implementarea a minim 3 funcții membru publice pentru funcționalități specifice temei alese, dintre care cel puțin 1-2 funcții mai complexe
   - nu doar citiri/afișări sau adăugat/șters elemente într-un/dintr-un vector
 - [x] scenariu de utilizare a claselor definite:

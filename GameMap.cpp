@@ -1,6 +1,3 @@
-
-
-
 // GameMap.cpp
 #include <iostream>
 #include "headers/GameMap.h"
@@ -10,7 +7,7 @@ GameMap::GameMap() : game_map(4, std::vector<Tile>(4)) {}
 
 void GameMap::drawMap(sf::RenderWindow& window, float tile_size, Gameplay& gameplay) {
     sf::Font font;
-    if (!font.loadFromFile(R"(D:\coding\C++ Projects\oop-template\fonts\Roboto-Black.ttf)"))
+    if (!font.loadFromFile(R"(fonts/Roboto-Black.ttf)"))
     {
         std::cerr <<"fail";
     }
@@ -76,8 +73,8 @@ void GameMap::drawMap(sf::RenderWindow& window, float tile_size, Gameplay& gamep
 
             tileShape.setFillColor(color);
 
-//            tileShape.setOutlineThickness(10); // Set outline thickness
-//            tileShape.setOutlineColor(sf::Color::Black); // Set outline color
+//            tileShape.setOutlineThickness(10);
+//            tileShape.setOutlineColor(sf::Color::Black);
 
             window.draw(tileShape);
 

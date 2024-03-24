@@ -36,5 +36,19 @@ public:
 
     [[nodiscard]] bool gameOver() const;
 
+    Gameplay() = default;
+
+    Gameplay(Gameplay&& other) noexcept
+            : m_map(std::move(other.m_map)), m_game_data(other.m_game_data) {
+    }
+
+    Gameplay& operator=(Gameplay&& other) noexcept {
+        if (this != &other) {
+            this->m_game_data = other.m_game_data;
+            this->m_map = std::move(other.m_map);
+        }
+        return *this;
+    }
+
     ~Gameplay() override = default;
 };

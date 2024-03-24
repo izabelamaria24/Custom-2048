@@ -25,7 +25,7 @@ void Gameplay::renderWindow(sf::RenderWindow &gameWindow) {
             handleInput(gameWindow);
         } else {
             sf::Font font;
-            if (!font.loadFromFile(R"(D:\coding\C++ Projects\oop-template\fonts\Roboto-Black.ttf)"))
+            if (!font.loadFromFile(R"(fonts\Roboto-Black.ttf)"))
             {
                 // TODO throw error
             }
