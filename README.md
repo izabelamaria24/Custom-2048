@@ -2,7 +2,6 @@
 
 ## Descriere proiect
 
-
 ### Proiectul consta intr-un joc de 2048 care va avea mai multe optiuni de joc:
 * Player 
   - Easy
@@ -12,7 +11,6 @@
   - Beginner
   - Normal
   - Advanced
-
 
 ### Cerințe modele de limbaj la nivel de semestru
 - [ ] minim o funcționalitate majoritar doar cu LLM
